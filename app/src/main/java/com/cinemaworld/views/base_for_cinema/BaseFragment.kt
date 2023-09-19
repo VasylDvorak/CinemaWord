@@ -1,4 +1,4 @@
-package com.cinemaworld.views.base_for_dictionary
+package com.cinemaworld.views.base_for_cinema
 
 
 import android.animation.Animator
@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.cinemaworld.R
 import com.cinemaworld.model.data_word_request.DataModel
-import com.cinemaworld.model.data_word_request.Result
 import com.cinemaworld.model.datasource.AppState
 import com.cinemaworld.model.repository.OnLineRepository
 import com.cinemaworld.utils.ui.AlertDialogFragment

@@ -1,4 +1,4 @@
-package com.cinemaworld.views.base_for_dictionary
+package com.cinemaworld.views.base_for_cinema
 
 import android.animation.Animator
 import android.os.Bundle

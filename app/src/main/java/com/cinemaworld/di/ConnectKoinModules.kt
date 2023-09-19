@@ -8,16 +8,10 @@ import com.cinemaworld.di.koin_modules.DescriptionFragmentModule
 import com.cinemaworld.di.koin_modules.MainFragmentModule
 import com.cinemaworld.domain.interactors.DescriptionInteractor
 import com.cinemaworld.domain.interactors.MainInteractor
-import com.cinemaworld.model.data_word_request.DataModel
-import com.cinemaworld.views.MainViewModel
-
 import com.cinemaworld.model.datasource.RetrofitImplementation
 import com.cinemaworld.model.repository.OnLineRepository
 import com.cinemaworld.model.repository.Repository
 import com.cinemaworld.model.repository.RepositoryImplementation
-import com.cinemaworld.views.description.DescriptionFragment
-import com.cinemaworld.views.description.DescriptionViewModel
-import com.cinemaworld.views.main_fragment.MainFragment
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
@@ -31,35 +25,35 @@ const val descriptionScreenScopeName = "descriptionScreenScope"
 object ConnectKoinModules {
 
     val application = module {
-        single<Repository<List<DataModel>>> { RepositoryImplementation(RetrofitImplementation()) }
+        single<Repository> { RepositoryImplementation(RetrofitImplementation()) }
         single { OnLineRepository() }
     }
 
 
 
-    val mainScreen = module {
-        scope(named<MainFragment>()) {
-            scoped { MainInteractor(get()) }
-            viewModel { MainViewModel(get()) }
-        }
-    }
-
-    val mainScreenScope by lazy {
-        getKoin()
-            .getOrCreateScope(mainScreenScopeName, named<MainFragment>())
-    }
-
-    val descriptionScreen = module {
-        scope(named<DescriptionFragment>()) {
-            scoped { DescriptionInteractor(get()) }
-            viewModel { DescriptionViewModel(get()) }
-        }
-    }
-
-    val descriptionScreenScope by lazy {
-        getKoin()
-            .getOrCreateScope(descriptionScreenScopeName, named<DescriptionFragment>())
-    }
+//    val mainScreen = module {
+//        scope(named<MainFragment>()) {
+//            scoped { MainInteractor(get()) }
+//            viewModel { MainViewModel(get()) }
+//        }
+//    }
+//
+//    val mainScreenScope by lazy {
+//        getKoin()
+//            .getOrCreateScope(mainScreenScopeName, named<MainFragment>())
+//    }
+//
+//    val descriptionScreen = module {
+//        scope(named<DescriptionFragment>()) {
+//            scoped { DescriptionInteractor(get()) }
+//            viewModel { DescriptionViewModel(get()) }
+//        }
+//    }
+//
+//    val descriptionScreenScope by lazy {
+//        getKoin()
+//            .getOrCreateScope(descriptionScreenScopeName, named<DescriptionFragment>())
+//    }
 
 
     val apiModule = module {
@@ -73,14 +67,14 @@ object ConnectKoinModules {
     }
 
 
-    val mainFragmentModule = module {
-        single { MainFragmentModule().mainFragment() }
-
-    }
-
-
-    val descriptionFragmentModule = module {
-        single { DescriptionFragmentModule().descriptionFragment() }
-
-    }
+//    val mainFragmentModule = module {
+//        single { MainFragmentModule().mainFragment() }
+//
+//    }
+//
+//
+//    val descriptionFragmentModule = module {
+//        single { DescriptionFragmentModule().descriptionFragment() }
+//
+//    }
 }

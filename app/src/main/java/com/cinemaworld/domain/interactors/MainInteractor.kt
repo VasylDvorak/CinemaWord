@@ -6,14 +6,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 class MainInteractor(
-    var repositoryRemote: Repository,
+    var repositoryRemote: Repository
 ) : Interactor<AppState> {
 
-    override suspend fun getData(word: String, fromRemoteSource: Boolean): StateFlow<AppState> {
-        var appState: AppState
-            val remoteList = repositoryRemote.getData(word)
-            appState = AppState.Success(remoteList)
-        return MutableStateFlow(appState)
+    override suspend fun getData(word: String, page: Int, fromRemoteSource: Boolean): StateFlow<AppState> {
+            val remoteList = repositoryRemote.getData(word, page)
+        return MutableStateFlow(AppState.Success(remoteList))
     }
 }
 

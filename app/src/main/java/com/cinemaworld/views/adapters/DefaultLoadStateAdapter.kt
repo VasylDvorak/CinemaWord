@@ -1,4 +1,4 @@
-package com.cinemaworld.adapters
+package com.cinemaworld.views.adapters
 
 
 import android.view.LayoutInflater

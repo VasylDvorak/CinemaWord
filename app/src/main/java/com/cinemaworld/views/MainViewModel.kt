@@ -6,23 +6,23 @@ import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.cinemaworld.model.users.User
-import com.cinemaworld.model.users.repositories.UsersRepository
+import com.cinemaworld.model.data_word_request.Result
+import com.cinemaworld.model.loaders.repositories.FilmsRetrofitRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flatMapLatest
 
 @ExperimentalCoroutinesApi
 @FlowPreview
-class MainViewModel(
-    private val usersRepository: UsersRepository
-) : ViewModel() {
+class MainViewModel: ViewModel() {
 
-    val isErrorsEnabled: Flow<Boolean> = usersRepository.isErrorsEnabled()
+    val usersRepository =  FilmsRetrofitRepository(Dispatchers.IO)
 
-    val usersFlow: Flow<PagingData<User>>
+    val usersFlow: Flow<PagingData<Pair<Result?, Result?>>>
 
     private val searchBy = MutableLiveData("")
 
@@ -30,6 +30,7 @@ class MainViewModel(
         usersFlow = searchBy.asFlow()
             // if user types text too quickly -> filtering intermediate values to avoid excess loads
             .debounce(500)
+            .distinctUntilChanged()
             .flatMapLatest {
                 usersRepository.getPagedUsers(it)
             }
@@ -46,10 +47,4 @@ class MainViewModel(
     fun refresh() {
         this.searchBy.postValue(this.searchBy.value)
     }
-
-    fun setEnableErrors(value: Boolean) {
-        // called when 'Enable Errors' checkbox value is changed
-        usersRepository.setErrorsEnabled(value)
-    }
-
 }

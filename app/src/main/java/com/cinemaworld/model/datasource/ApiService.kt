@@ -21,8 +21,7 @@ interface ApiService {
     fun searchAsync(
         @Query("query") request_movie: String?="",
         @Query("include_adult") include_adult: Boolean?=false,
-        @Query("language") language: String?="en-US",
-        @Query("language") page: Int?=1,
+        @Query("page") page: Int?=1,
         @Query("api_key") api_key: String?="${BuildConfig.KEY}"
     ): Deferred<DataModel>
 

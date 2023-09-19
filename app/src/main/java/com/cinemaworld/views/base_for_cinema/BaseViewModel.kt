@@ -1,4 +1,4 @@
-package com.cinemaworld.views.base_for_dictionary
+package com.cinemaworld.views.base_for_cinema
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

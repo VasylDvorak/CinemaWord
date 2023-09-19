@@ -8,5 +8,5 @@ interface RepositoryDataSource {
 
     suspend fun getDataId(id: String): DataModelId = DataModelId()
 
-    suspend fun getData(word: String): DataModel = DataModel()
+    suspend fun getData(word: String, page:Int): DataModel = DataModel()
 }

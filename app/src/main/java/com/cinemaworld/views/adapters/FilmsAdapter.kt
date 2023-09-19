@@ -1,4 +1,4 @@
-package com.cinemaworld.adapters
+package com.cinemaworld.views.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,36 +8,39 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.cinemaworld.R
-import com.cinemaworld.databinding.ItemUserBinding
-import com.cinemaworld.model.users.User
+import com.cinemaworld.databinding.ItemFilmBinding
+import com.cinemaworld.model.data_word_request.Result
+import com.google.gson.Gson
 
 
 /**
  * Adapter for rendering users list in a RecyclerView.
  */
-class UsersAdapter : PagingDataAdapter<User, UsersAdapter.Holder>(UsersDiffCallback()) {
+class FilmsAdapter : PagingDataAdapter<Pair<Result?, Result?>, FilmsAdapter.Holder>(
+    FilmsDiffCallback()
+) {
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val user = getItem(position) ?: return
         with (holder.binding) {
             if(user != null){
-            userNameTextView.text = user.name
-            userCompanyTextView.text = user.company
-            loadUserPhoto(photoImageView, user.imageUrl)
+            userNameTextView.text = user.first?.name
+            userCompanyTextView.text = user.first?.original_title
+                user.first?.poster_path?.let { loadFilmPhoto(photoImageView, it) }
         }else{
                 userNameTextView.text = ""
                 userCompanyTextView.text = ""
-                loadUserPhoto(photoImageView, "")
+                loadFilmPhoto(photoImageView, "")
             }
     }}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = ItemUserBinding.inflate(inflater, parent, false)
+        val binding = ItemFilmBinding.inflate(inflater, parent, false)
         return Holder(binding)
     }
 
-    private fun loadUserPhoto(imageView: ImageView, url: String) {
+    private fun loadFilmPhoto(imageView: ImageView, url: String) {
         val context = imageView.context
         if (url.isNotBlank()) {
             Glide.with(context)
@@ -54,19 +57,20 @@ class UsersAdapter : PagingDataAdapter<User, UsersAdapter.Holder>(UsersDiffCallb
     }
 
     class Holder(
-        val binding: ItemUserBinding
+        val binding: ItemFilmBinding
     ) : RecyclerView.ViewHolder(binding.root)
 
 }
 
 // ---
 
-class UsersDiffCallback : DiffUtil.ItemCallback<User>() {
-    override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
-        return oldItem.id == newItem.id
+class FilmsDiffCallback : DiffUtil.ItemCallback<Pair<Result?, Result?>>() {
+    private val gson by lazy{Gson()}
+    override fun areItemsTheSame(oldItem: Pair<Result?, Result?>, newItem: Pair<Result?, Result?>): Boolean {
+        return (oldItem.first?.id == newItem.first?.id)&&(oldItem.second?.id == newItem.second?.id)
     }
 
-    override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
-        return oldItem == newItem
+    override fun areContentsTheSame(oldItem: Pair<Result?, Result?>, newItem: Pair<Result?, Result?>): Boolean {
+        return   gson.toJson(oldItem) == gson.toJson(newItem)
     }
 }

@@ -19,5 +19,7 @@
     <string name="empty_string_message">Пустой запрос</string>
     <string name="error_message">Ошибка</string>
     <string name="undefined_error">Неопределённая ошибка</string>
+    <string name="search">Искать</string>
+    <string name="looking_for">Ищем</string>
 
 </resources>
