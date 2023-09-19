@@ -1,15 +1,13 @@
-package com.diplomproject.model.data_word_request
+package com.cinemaworld.model.data_word_request
 
 import android.os.Parcelable
-import com.diplomproject.model.data_description_request.Example
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-class DataModel(
-    @field:SerializedName("id") val id: Int? = 0,
-    @field:SerializedName("text") val text: String? = "",
-    @field:SerializedName("meanings") val meanings: List<Meanings>? = listOf(),
-    var exampleDataModel: List<Example>? = listOf(),
-    var inFavoriteList: Boolean = false
+data class DataModel(
+    @field:SerializedName("page")  var page: Int? = 0,
+    @field:SerializedName("results") var results: List<Result?>? = listOf(),
+    @field:SerializedName("total_pages") var total_pages: Int? = 0,
+    @field:SerializedName("total_results") var total_results: Int? = 0
 ) : Parcelable

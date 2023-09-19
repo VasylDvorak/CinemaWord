@@ -1,8 +1,8 @@
 package com.cinemaworld.di.koin_modules
 
 import com.cinemaworld.BuildConfig
-import com.diplomproject.model.datasource.ApiService
-import com.diplomproject.model.datasource.BaseInterceptor
+import com.cinemaworld.model.datasource.ApiService
+import com.cinemaworld.model.datasource.BaseInterceptor
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

@@ -3,7 +3,7 @@ package com.cinemaworld.views
 import android.animation.Animator
 import android.animation.AnimatorInflater
 import androidx.fragment.app.FragmentTransaction
-import com.diplomproject.R
+import com.cinemaworld.R
 import org.koin.java.KoinJavaComponent.getKoin
 
 class AnimatorDictionary {

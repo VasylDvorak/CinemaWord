@@ -1,4 +1,4 @@
-package com.diplomproject.view.base_for_dictionary
+package com.cinemaworld.views.base_for_dictionary
 
 
 import android.animation.Animator
@@ -9,18 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
-import com.diplomproject.R
-import com.diplomproject.model.data_word_request.DataModel
-import com.diplomproject.model.datasource.AppState
-import com.diplomproject.navigation.IScreens
-import com.diplomproject.utils.ui.AlertDialogFragment
-import com.diplomproject.view.AnimatorDictionary
-import com.diplomproject.view.OnlineRepository
-import com.github.terrakok.cicerone.Router
+import com.cinemaworld.R
+import com.cinemaworld.model.data_word_request.DataModel
+import com.cinemaworld.model.data_word_request.Result
+import com.cinemaworld.model.datasource.AppState
+import com.cinemaworld.model.repository.OnLineRepository
+import com.cinemaworld.utils.ui.AlertDialogFragment
+import com.cinemaworld.views.AnimatorDictionary
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import org.koin.android.ext.android.inject
-import org.koin.java.KoinJavaComponent
 
 abstract class BaseFragment<T : AppState, B : ViewBinding>(
     private val inflateBinding: (
@@ -36,12 +34,9 @@ abstract class BaseFragment<T : AppState, B : ViewBinding>(
 
     private var snack: Snackbar? = null
     protected var isNetworkAvailable: Boolean = false
-    private val checkConnection: OnlineRepository by inject()
+    private val checkConnection: OnLineRepository by inject()
     abstract val model: BaseViewModel<T>
     protected val checkSDKversion = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
-
-    val router: Router by KoinJavaComponent.inject(Router::class.java)
-    val screen = KoinJavaComponent.getKoin().get<IScreens>()
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -91,13 +86,13 @@ abstract class BaseFragment<T : AppState, B : ViewBinding>(
     }
 
 
-    abstract fun setDataToAdapter(data: List<DataModel>)
+    abstract fun setDataToAdapter(data: DataModel)
     protected open fun renderData(appState: T) {
 
         when (appState) {
             is AppState.Success -> {
                 appState.data?.let {
-                    if (it.isEmpty()) {
+                    if ((it==null)||(it.results?.isNullOrEmpty() == true)) {
                         showAlertDialog(
                             getString(R.string.dialog_tittle_sorry),
                             getString(R.string.empty_server_response_on_success)

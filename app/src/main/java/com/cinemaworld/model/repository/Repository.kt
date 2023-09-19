@@ -1,12 +1,10 @@
-package com.diplomproject.model.repository
+package com.cinemaworld.model.repository
 
-import com.diplomproject.model.data_description_request.Example
-import com.diplomproject.model.data_word_request.Meanings
+import com.cinemaworld.model.data_description_request.DataModelId
+import com.cinemaworld.model.data_word_request.DataModel
 
+interface Repository{
 
-interface Repository<T> {
-
-    suspend fun getData(word: String): T
-    suspend fun getFavoriteList(): T
-    suspend fun getDataDescription(meanings: List<Meanings>): List<Example> = listOf()
+    suspend fun getData(word: String): DataModel
+    suspend fun getDataId(id: Int): DataModelId
 }

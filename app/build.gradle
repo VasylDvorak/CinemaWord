@@ -2,10 +2,11 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'kotlin-parcelize'
 }
 
 android {
-    namespace 'com.cinemaword'
+    namespace 'com.cinemaworld'
     compileSdk 33
 
     defaultConfig {
@@ -26,8 +27,15 @@ android {
     buildTypes.each {
         Properties properties = new Properties()
         properties.load(project.rootProject.file( "cinema.properties" ).newDataInputStream ())
+
         def url = properties.getProperty( "baseUrl" , "" )
         it.buildConfigField "String" , "BASE_URL" , url
+
+        def imageUrl = properties.getProperty( "imageUrl" , "" )
+        it.buildConfigField "String" , "IMAGE_URL" , imageUrl
+
+        def key = properties.getProperty( "key" , "" )
+        it.buildConfigField "String" , "KEY" , key
     }
     buildTypes {
         release {

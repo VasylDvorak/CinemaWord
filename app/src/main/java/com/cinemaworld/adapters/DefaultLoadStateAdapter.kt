@@ -8,7 +8,7 @@ import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.cinemaword.databinding.PartDefaultLoadStateBinding
+import com.cinemaworld.databinding.PartDefaultLoadStateBinding
 
 /**
  * Action to be executed when Try Again button is pressed

@@ -7,8 +7,8 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.cinemaword.R
-import com.cinemaword.databinding.ItemUserBinding
+import com.cinemaworld.R
+import com.cinemaworld.databinding.ItemUserBinding
 import com.cinemaworld.model.users.User
 
 

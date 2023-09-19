@@ -1,4 +1,4 @@
-package com.diplomproject.model.datasource
+package com.cinemaworld.model.datasource
 
 import okhttp3.Interceptor
 import okhttp3.Response
