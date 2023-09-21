@@ -7,8 +7,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.cinemaworld.model.data_word_request.Result
-import com.cinemaworld.model.loaders.repositories.FilmsRetrofitRepository
-import kotlinx.coroutines.Dispatchers
+import com.cinemaworld.model.loaders.repositories.FilmsRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
@@ -18,9 +17,7 @@ import kotlinx.coroutines.flow.flatMapLatest
 
 @ExperimentalCoroutinesApi
 @FlowPreview
-class MainViewModel: ViewModel() {
-
-    val usersRepository =  FilmsRetrofitRepository(Dispatchers.IO)
+class MainViewModel(private val usersRepository: FilmsRepository) : ViewModel() {
 
     val usersFlow: Flow<PagingData<Pair<Result?, Result?>>>
 

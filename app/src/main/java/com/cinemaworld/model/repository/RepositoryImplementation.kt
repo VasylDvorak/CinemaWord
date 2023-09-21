@@ -7,7 +7,7 @@ import com.cinemaworld.model.datasource.RepositoryDataSource
 class RepositoryImplementation(private val dataSource: RepositoryDataSource) :
     Repository {
 
-    override suspend fun getData(word: String, page:Int): DataModel {
+    override suspend fun getData(word: String, page: Int): DataModel {
         return dataSource.getData(word, page)
     }
 

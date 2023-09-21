@@ -10,9 +10,9 @@ import org.koin.java.KoinJavaComponent.getKoin
 
 class RetrofitImplementation : RepositoryDataSource {
 
-    override suspend fun getData(word: String, page:Int): DataModel {
+    override suspend fun getData(word: String, page: Int): DataModel {
         val getService = getKoin().get<ApiService>()
-        return dataModelParserAddImageURL(getService.searchAsync(word, page=page).await())
+        return dataModelParserAddImageURL(getService.searchAsync(word, page = page).await())
     }
 
     override suspend fun getDataId(id: String): DataModelId {

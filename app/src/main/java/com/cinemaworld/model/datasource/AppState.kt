@@ -9,8 +9,9 @@ import kotlinx.android.parcel.Parcelize
 sealed class AppState : Parcelable {
     @Parcelize
     data class Success(val data: DataModel?) : AppState(), Parcelable
+
     @Parcelize
-    data class SuccessPair(val dataPair:MutableList<Pair<Result?, Result?>> ) :
+    data class SuccessPair(val dataPair: MutableList<Pair<Result?, Result?>>) :
         AppState(), Parcelable
 
     @Parcelize

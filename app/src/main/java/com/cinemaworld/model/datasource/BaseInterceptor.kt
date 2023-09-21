@@ -14,6 +14,7 @@ class BaseInterceptor private constructor() : Interceptor {
         responseCode = response.code
         return response
     }
+
     companion object {
 
         val interceptor: BaseInterceptor

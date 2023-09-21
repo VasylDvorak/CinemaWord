@@ -23,8 +23,10 @@ data class DataModelId(
     @field:SerializedName("overview") var overview: String? = "",
     @field:SerializedName("popularity") var popularity: Double? = 0.0,
     @field:SerializedName("poster_path") var posterPath: String? = "",
-    @field:SerializedName("production_companies") var productionCompanies: List<ProductionCompany?>? = listOf(),
-    @field:SerializedName("production_countries") var productionCountries: List<ProductionCountry?>? = listOf(),
+    @field:SerializedName("production_companies") var productionCompanies:
+    List<ProductionCompany?>? = listOf(),
+    @field:SerializedName("production_countries") var productionCountries:
+    List<ProductionCountry?>? = listOf(),
     @field:SerializedName("release_date") var releaseDate: String? = "",
     @field:SerializedName("revenue") var revenue: Int? = 0,
     @field:SerializedName("runtime") var runtime: Int? = 0,

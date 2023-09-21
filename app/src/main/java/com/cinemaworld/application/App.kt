@@ -4,6 +4,10 @@ import android.app.Application
 import com.cinemaworld.di.ConnectKoinModules.apiModule
 import com.cinemaworld.di.ConnectKoinModules.appModule
 import com.cinemaworld.di.ConnectKoinModules.application
+import com.cinemaworld.di.ConnectKoinModules.descriptionFragmentModule
+import com.cinemaworld.di.ConnectKoinModules.descriptionScreen
+import com.cinemaworld.di.ConnectKoinModules.mainFragmentModule
+import com.cinemaworld.di.ConnectKoinModules.mainScreen
 //import com.cinemaworld.di.ConnectKoinModules.descriptionFragmentModule
 //import com.cinemaworld.di.ConnectKoinModules.mainFragmentModule
 import org.koin.android.ext.koin.androidContext
@@ -22,12 +26,12 @@ class App : Application() {
             modules(
                 listOf(
                     application,
-                 //   mainScreen,
+                    mainScreen,
                     apiModule,
                     appModule,
-//                    mainFragmentModule,
-//                    descriptionFragmentModule,
-                  //  descriptionScreen
+                    mainFragmentModule,
+                    descriptionFragmentModule,
+                    descriptionScreen
 
                 )
             )

@@ -2,7 +2,6 @@ package com.cinemaworld.domain.interactors
 
 import android.content.Context
 import com.cinemaworld.R
-import com.cinemaworld.model.data_description_request.DataModelId
 import com.cinemaworld.model.data_description_request.DescriptionAppState
 import com.cinemaworld.model.repository.Repository
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.cinemaworld.R
-import com.cinemaworld.model.data_word_request.DataModel
 import com.cinemaworld.model.datasource.AppState
 import com.cinemaworld.model.repository.OnLineRepository
 import com.cinemaworld.utils.ui.AlertDialogFragment
@@ -34,7 +33,7 @@ abstract class BaseFragment<T : AppState, B : ViewBinding>(
     private var snack: Snackbar? = null
     protected var isNetworkAvailable: Boolean = false
     private val checkConnection: OnLineRepository by inject()
-    abstract val model: BaseViewModel<T>
+
     protected val checkSDKversion = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -84,32 +83,6 @@ abstract class BaseFragment<T : AppState, B : ViewBinding>(
         return activity?.supportFragmentManager?.findFragmentByTag(DIALOG_FRAGMENT_TAG) == null
     }
 
-
-    abstract fun setDataToAdapter(data: DataModel)
-    protected open fun renderData(appState: T) {
-
-        when (appState) {
-            is AppState.Success -> {
-                appState.data?.let {
-                    if ((it==null)||(it.results?.isNullOrEmpty() == true)) {
-                        showAlertDialog(
-                            getString(R.string.dialog_tittle_sorry),
-                            getString(R.string.empty_server_response_on_success)
-                        )
-                    } else {
-                        setDataToAdapter(it)
-                    }
-                }
-            }
-
-            is AppState.Error -> {
-                showAlertDialog(
-                    getString(R.string.error_stub),
-                    appState.error.message
-                )
-            }
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

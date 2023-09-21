@@ -1,5 +1,4 @@
-package com.cinemaworld.views.adapters
-
+package com.cinemaworld.views.main_fragment
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,11 +9,16 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.cinemaworld.databinding.PartDefaultLoadStateBinding
 
+
 /**
  * Action to be executed when Try Again button is pressed
  */
 typealias TryAgainAction = () -> Unit
 
+/**
+ * This adapter is used for rendering the load state (ProgressBar, error message and Try Again button)
+ * in the list's header and footer.
+ */
 /**
  * This adapter is used for rendering the load state (ProgressBar, error message and Try Again button)
  * in the list's header and footer.

@@ -5,23 +5,11 @@ import com.cinemaworld.model.data_description_request.DataModelId
 import com.cinemaworld.model.data_description_request.DescriptionAppState
 import com.cinemaworld.model.data_word_request.DataModel
 import com.cinemaworld.model.data_word_request.Result
-import com.cinemaworld.model.datasource.AppState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 
-suspend fun parseSearchResults(state: Flow<AppState>): AppState {
-    var appState = state.first()
-    when (appState) {
-        is AppState.Success -> {
-            appState = AppState.SuccessPair(resultPairParser(appState.data!!.results as MutableList))
-        }
 
-        else -> {}
-    }
-    return appState
-}
-
-suspend fun resultPairParser(results: MutableList<Result?>): MutableList<Pair<Result?, Result?>> {
+fun resultPairParser(results: MutableList<Result?>): MutableList<Pair<Result?, Result?>> {
     var outputResults: MutableList<Pair<Result?, Result?>> = mutableListOf()
     var searchResults = results
 
@@ -29,10 +17,11 @@ suspend fun resultPairParser(results: MutableList<Result?>): MutableList<Pair<Re
         if (searchResults.size % 2 != 0) {
             searchResults.add(null)
         }
-        var counter=0
-        do{
+        var counter = 0
+        do {
             outputResults.add(Pair(searchResults[counter], searchResults[++counter]))
-        }while (counter < (searchResults.size-1))
+            ++counter
+        } while (counter < (searchResults.size - 1))
 
     }
     return outputResults

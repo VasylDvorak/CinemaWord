@@ -21,5 +21,16 @@
     <string name="undefined_error">Неопределённая ошибка</string>
     <string name="search">Искать</string>
     <string name="looking_for">Ищем</string>
+    <string name="title_film">Название фильма</string>
+    <string name="relise">Релиз</string>
+    <string name="overview">Обзор</string>
+    <string name="raiting">Рейтинг</string>
+    <string name="duration">Продолжительность</string>
+    <string name="genre">Жанр</string>
+    <string name="name_actor">Имя актёра</string>
+    <string name="role">Роль</string>
+    <string name="cast">Актёрский состав</string>
+    <string name="search_film">Ищем фильм</string>
+    <string name="cant_find_film">Не можем найти фильм</string>
 
 </resources>

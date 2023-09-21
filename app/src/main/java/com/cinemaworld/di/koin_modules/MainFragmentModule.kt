@@ -1,8 +1,8 @@
 package com.cinemaworld.di.koin_modules
 
-//import com.cinemaworld.views.main_fragment.MainFragment
+import com.cinemaworld.views.main_fragment.MainFragment
 
 
 class MainFragmentModule {
-  //  fun mainFragment(): MainFragment = MainFragment()
+    fun mainFragment(): MainFragment = MainFragment()
 }

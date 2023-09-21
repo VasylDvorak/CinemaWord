@@ -22,7 +22,8 @@ class ViewModelFactory<VM : ViewModel>(
 
 }
 
-inline fun <reified VM : ViewModel> ComponentActivity.viewModelCreator(noinline creator: ViewModelCreator<VM>): Lazy<VM> {
+inline fun <reified VM : ViewModel> ComponentActivity.
+        viewModelCreator(noinline creator: ViewModelCreator<VM>): Lazy<VM> {
     return viewModels { ViewModelFactory(this, creator) }
 }
 

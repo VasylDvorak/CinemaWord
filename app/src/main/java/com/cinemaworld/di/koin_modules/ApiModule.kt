@@ -31,7 +31,8 @@ class ApiModule {
     fun createOkHttpClient(interceptor: Interceptor): OkHttpClient {
         val httpClient = OkHttpClient.Builder()
         httpClient.addInterceptor(interceptor)
-        httpClient.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+        httpClient.addInterceptor(HttpLoggingInterceptor()
+            .setLevel(HttpLoggingInterceptor.Level.BODY))
         return httpClient.build()
     }
 

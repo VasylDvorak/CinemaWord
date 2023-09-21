@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/description_screen_swipe_refresh_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/big_poster"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/baseline_wallpaper_24"
+        app:layout_constraintLeft_toLeftOf="@+id/small_poster"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="350dp"
+        android:layout_height="90dp"
+        android:paddingTop="10dp"
+        android:text="@string/title_film"
+        android:textColor="@color/design_default_color_primary_dark"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@id/small_poster"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/release"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="2dp"
+        android:text="@string/relise"
+        android:textColor="@color/design_default_color_primary_dark"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@id/indicatorRating"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+    <TextView
+        android:id="@+id/duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/duration"
+        android:textColor="@color/design_default_color_primary_dark"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@id/indicatorRating"
+        app:layout_constraintTop_toBottomOf="@id/release" />
+
+    <TextView
+        android:id="@+id/genre"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="@string/genre"
+        android:textColor="@color/design_default_color_primary_dark"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@id/indicatorRating"
+        app:layout_constraintTop_toBottomOf="@+id/duration" />
+
+    <ImageView
+        android:id="@+id/small_poster"
+        android:layout_width="100dp"
+        android:layout_height="130dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginBottom="-25dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/baseline_wallpaper_24"
+        app:layout_constraintBottom_toBottomOf="@+id/big_poster"
+        app:layout_constraintLeft_toLeftOf="@+id/big_poster" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/indicatorRating"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="25dp"
+        android:max="100"
+        android:progress="50"
+        app:indicatorColor="@android:color/holo_orange_dark"
+        app:indicatorDirectionCircular="clockwise"
+        app:layout_constraintBottom_toBottomOf="@id/big_poster"
+        app:layout_constraintLeft_toRightOf="@id/small_poster"
+        app:trackColor="@color/indicator_rating"
+        app:trackCornerRadius="5dp" />
+
+    <TextView
+        android:id="@+id/textRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="13dp"
+        android:paddingBottom="15dp"
+        android:text="0%"
+        android:textColor="@android:color/holo_red_light"
+        app:layout_constraintBottom_toBottomOf="@id/indicatorRating"
+        app:layout_constraintLeft_toLeftOf="@id/indicatorRating" />
+
+    <TextView
+        android:id="@+id/textRatingTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingBottom="15dp"
+        android:text="@string/raiting"
+        android:textColor="@color/design_default_color_primary_dark"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/indicatorRating"
+        app:layout_constraintLeft_toRightOf="@id/indicatorRating" />
+
+    <TextView
+        android:id="@+id/title_overview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/overview"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@+id/small_poster"
+        app:layout_constraintTop_toBottomOf="@+id/small_poster" />
+
+    <ScrollView
+        android:id="@+id/overviewScroll"
+        android:layout_width="match_parent"
+        android:layout_height="135dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        app:layout_constraintLeft_toLeftOf="@+id/title_overview"
+        app:layout_constraintTop_toBottomOf="@+id/title_overview">
+
+        <TextView
+            android:id="@+id/overview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/overview"
+            android:textSize="16sp" />
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/title_cast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cast"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@+id/title_overview"
+        app:layout_constraintTop_toBottomOf="@+id/overviewScroll" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/description_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginLeft="25dp"
+        android:orientation="horizontal"
+        android:scrollbars="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/title_cast"
+        app:layout_constraintTop_toBottomOf="@+id/title_cast" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,8 +9,12 @@ class MainInteractor(
     var repositoryRemote: Repository
 ) : Interactor<AppState> {
 
-    override suspend fun getData(word: String, page: Int, fromRemoteSource: Boolean): StateFlow<AppState> {
-            val remoteList = repositoryRemote.getData(word, page)
+    override suspend fun getData(
+        word: String,
+        page: Int,
+        fromRemoteSource: Boolean
+    ): StateFlow<AppState> {
+        val remoteList = repositoryRemote.getData(word, page)
         return MutableStateFlow(AppState.Success(remoteList))
     }
 }
