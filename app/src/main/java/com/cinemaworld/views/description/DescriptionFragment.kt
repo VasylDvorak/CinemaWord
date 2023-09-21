@@ -83,7 +83,7 @@ class DescriptionFragment :
         model.setQuery(descriptionAppState)
         when (descriptionAppState) {
             is DescriptionAppState.Success -> {
-                //  binding.progressBarRoundDescription.visibility = View.GONE
+                binding.progressBarRoundDescription.visibility = View.GONE
                 val data = descriptionAppState.data
                 if (data == null) {
                     Toast.makeText(context, getString(R.string.example_absent), Toast.LENGTH_LONG)
@@ -145,6 +145,7 @@ class DescriptionFragment :
                 snack = null
                 setData()
             } else {
+                binding.progressBarRoundDescription.visibility = View.GONE
                 snack = Snackbar.make(
                     requireView(),
                     R.string.dialog_message_device_is_offline,
@@ -162,7 +163,6 @@ class DescriptionFragment :
             fragment.arguments = bundle
             return fragment
         }
-
     }
 
     override fun onBackPressed(): Boolean = false

@@ -43,7 +43,6 @@ class FilmsAdapter(
 
     private fun fillWithViewCard(filmCardItemBinding: FilmCardItemBinding, result: Result) {
         if (!((result.release_date.isNullOrEmpty()) && (result.original_title.isNullOrEmpty()))) {
-
             filmCardItemBinding.apply {
                 card.visibility = View.VISIBLE
                 result.poster_path?.let {

@@ -45,17 +45,15 @@ class FilmsRetrofitRepository(
         when (appState) {
             is AppState.Success -> {
                 val output = appState.data
-
-                if ((output?.results.isNullOrEmpty())&&(word.isNotEmpty())) {
-                    val contextApp=getKoin().get<Context>()
+                if ((output?.results.isNullOrEmpty()) && (word.isNotEmpty())) {
+                    val contextApp = getKoin().get<Context>()
                     Toast.makeText(
-                        contextApp, contextApp.getString(R.string.cant_find_film)+" "+word,
+                        contextApp, contextApp.getString(R.string.cant_find_film) + " " + word,
                         Toast.LENGTH_LONG
                     ).show()
                 }
-                    return output
+                return output
             }
-
             else -> {
                 return null
             }
