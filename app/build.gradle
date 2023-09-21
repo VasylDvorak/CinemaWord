@@ -2,27 +2,36 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'kotlin-parcelize'
 }
 
 android {
-    namespace 'com.cinemaword'
+    namespace 'com.cinemaworld'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.cinemaword"
+        applicationId "com.cinemaworld"
         minSdk 28
         targetSdk 33
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        kapt {
-            arguments {
-                arg("room.schemaLocation", "com.cinemaword/schemas")
-            }
-        }
     }
 
+    buildTypes.each {
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file( "cinema.properties" ).newDataInputStream ())
+
+        def url = properties.getProperty( "baseUrl" , "" )
+        it.buildConfigField "String" , "BASE_URL" , url
+
+        def imageUrl = properties.getProperty( "imageUrl" , "" )
+        it.buildConfigField "String" , "IMAGE_URL" , imageUrl
+
+        def key = properties.getProperty( "key" , "" )
+        it.buildConfigField "String" , "KEY" , key
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -38,6 +47,7 @@ android {
     }
     buildFeatures {
         viewBinding true
+        buildConfig true
     }
 }
 
@@ -51,26 +61,32 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-        implementation "androidx.activity:activity-ktx:1.7.2"
-        implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.2'
+    implementation "androidx.activity:activity-ktx:1.7.2"
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.2'
 
-        // coroutines
-        implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+    // coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
 
-        // for loading images
-        implementation "com.github.bumptech.glide:glide:4.14.2"
+    // for loading images
+    implementation "com.github.bumptech.glide:glide:4.14.2"
 
-        // room persistence library
-        implementation "androidx.room:room-runtime:2.5.2"
-        kapt "androidx.room:room-compiler:2.5.2"
-        implementation "androidx.room:room-ktx:2.5.2"
+    // pull-to-refresh
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
-        // pull-to-refresh
-        implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+    // paging library v3
+    implementation "androidx.paging:paging-runtime-ktx:3.2.1"
 
-        // paging library v3
-        implementation "androidx.paging:paging-runtime-ktx:3.2.1"
+    //Koin
+    implementation "io.insert-koin:koin-android:3.4.0"
+    implementation "io.insert-koin:koin-core:3.4.0"
+    implementation "io.insert-koin:koin-android-compat:3.4.0"
 
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.2"
 
 
 }

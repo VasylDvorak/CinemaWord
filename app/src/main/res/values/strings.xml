@@ -1,9 +1,36 @@
 <resources>
-    <string name="app_name">CinemaWord</string>
+    <string name="app_name">CinemaWorld</string>
     <string name="search_by">Search By</string>
-
+    <string name="no_connection_internet">Нет соединения с интернетом</string>
     <string name="user_photo">User\'s photo</string>
     <string name="load_error">Oops, can\'t load data</string>
     <string name="try_again">Try Again</string>
     <string name="enable_errors">Enable Errors</string>
+    <string name="dialog_message_device_is_offline">Вы не можете использовать кинотеатр
+        без интернет соединения</string>
+    <string name="dialog_title_device_is_offline">Нет интернет соединения</string>
+    <string name="dialog_tittle_sorry">Извините</string>
+    <string name="empty_server_response_on_success">Не можем найти фильм</string>
+    <string name="error_stub">Ошибка</string>
+    <string name="dialog_title_stub">Неопределённая ошибка</string>
+    <string name="dialog_button_cancel">OK</string>
+    <string name="exception_error">The ViewModel should be initialised first</string>
+    <string name="example_absent">Список актёров пуст</string>
+    <string name="empty_string_message">Пустой запрос</string>
+    <string name="error_message">Ошибка</string>
+    <string name="undefined_error">Неопределённая ошибка</string>
+    <string name="search">Искать</string>
+    <string name="looking_for">Ищем</string>
+    <string name="title_film">Название фильма</string>
+    <string name="relise">Релиз</string>
+    <string name="overview">Обзор</string>
+    <string name="raiting">Рейтинг</string>
+    <string name="duration">Продолжительность</string>
+    <string name="genre">Жанр</string>
+    <string name="name_actor">Имя актёра</string>
+    <string name="role">Роль</string>
+    <string name="cast">Актёрский состав</string>
+    <string name="search_film">Ищем фильм</string>
+    <string name="cant_find_film">Не можем найти фильм</string>
+
 </resources>
