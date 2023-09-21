@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.cinemaworld.R
 import com.cinemaworld.databinding.ActivityMainBinding
+import com.cinemaworld.views.description.IOnBackPressed
 import com.cinemaworld.views.main_fragment.MainFragment
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -29,4 +30,11 @@ class MainActivity : AppCompatActivity() {
             addToBackStack("")
             commitAllowingStateLoss()
         }
+
+    override fun onBackPressed() {
+        val fragment = this.supportFragmentManager.findFragmentById(R.id.flFragment)
+        if ((fragment as? IOnBackPressed)?.onBackPressed()?.not() == true) {
+            super.onBackPressed()
+        }
+    }
 }

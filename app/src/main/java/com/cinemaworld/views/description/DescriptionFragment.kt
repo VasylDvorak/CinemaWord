@@ -20,10 +20,12 @@ import com.google.android.material.snackbar.Snackbar
 import org.koin.android.ext.android.inject
 import kotlin.math.roundToInt
 
+
 const val CURRENT_RESULT = "current_result"
 
 class DescriptionFragment :
-    BaseFragmentSettingsMenu<FragmentDescriptionBinding>(FragmentDescriptionBinding::inflate) {
+    BaseFragmentSettingsMenu<FragmentDescriptionBinding>(FragmentDescriptionBinding::inflate),
+    IOnBackPressed {
 
     private var snack: Snackbar? = null
     private val checkConnection: OnLineRepository by inject()
@@ -35,7 +37,6 @@ class DescriptionFragment :
 
     private val adapter: DiscriptionFragmentAdapter
             by lazy { DiscriptionFragmentAdapter() }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -163,4 +164,10 @@ class DescriptionFragment :
         }
 
     }
+
+    override fun onBackPressed(): Boolean = false
+}
+
+interface IOnBackPressed {
+    fun onBackPressed(): Boolean
 }

@@ -36,7 +36,6 @@ abstract class BaseFragment<T : AppState, B : ViewBinding>(
 
     protected val checkSDKversion = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
         subscribeToNetworkChange()

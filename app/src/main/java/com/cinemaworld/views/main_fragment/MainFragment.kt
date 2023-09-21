@@ -32,7 +32,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 
-
 class MainFragment : BaseFragment<AppState, FragmentMainBinding>(FragmentMainBinding::inflate) {
 
     lateinit var model: MainViewModel
@@ -46,10 +45,11 @@ class MainFragment : BaseFragment<AppState, FragmentMainBinding>(FragmentMainBin
 
 
     private fun onItemClick(result: Result) {
+
         result.let {
             activity?.supportFragmentManager?.apply {
                 beginTransaction()
-                    .replace(R.id.flFragment, DescriptionFragment.newInstance(Bundle().apply {
+                    .add(R.id.flFragment, DescriptionFragment.newInstance(Bundle().apply {
                         putParcelable(CURRENT_RESULT, result)
                     }))
                     .addToBackStack("")
@@ -64,9 +64,7 @@ class MainFragment : BaseFragment<AppState, FragmentMainBinding>(FragmentMainBin
 
         setupFilmsList()
         setupSwipeToRefresh()
-
     }
-
 
     private fun setupFilmsList() {
 
@@ -90,13 +88,13 @@ class MainFragment : BaseFragment<AppState, FragmentMainBinding>(FragmentMainBin
                 tryAgainAction
             )
         }
-        observeUsers()
+        observeFilms()
         observeLoadState()
         handleScrollingToTopWhenSearching()
         handleListVisibility()
     }
 
-    private fun observeUsers() {
+    private fun observeFilms() {
         val viewModel: MainViewModel by lazy { mainScreenScope.get() }
         model = viewModel
         lifecycleScope.launch {
@@ -193,7 +191,7 @@ class MainFragment : BaseFragment<AppState, FragmentMainBinding>(FragmentMainBin
                                 Toast.LENGTH_LONG
                             ).show()
                         } else {
-                               showNoInternetConnectionDialog()
+                            showNoInternetConnectionDialog()
                         }
                         return true
                     }
