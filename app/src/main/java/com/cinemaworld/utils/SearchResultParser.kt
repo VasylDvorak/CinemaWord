@@ -42,10 +42,20 @@ suspend fun parseSearchResultsDescription(state: Flow<DescriptionAppState>): Des
     return descriptionAppState
 }
 
+
 fun dataModelParserAddImageURL(output: DataModel): DataModel {
+
     if (!output.results.isNullOrEmpty()) {
+        output.results = output.results!!.filter {
+            !(it?.poster_path.isNullOrEmpty()
+                    || it?.poster_path.isNullOrBlank()
+                    || it?.backdrop_path.isNullOrBlank()
+                    || it?.backdrop_path.isNullOrEmpty())
+        }
+
         output.results!!.forEach { result ->
-            result?.backdrop_path = BuildConfig.IMAGE_URL + result?.backdrop_path
+            if (!result?.backdrop_path.isNullOrEmpty() || !result?.backdrop_path.isNullOrBlank())
+                result?.backdrop_path = BuildConfig.IMAGE_URL + result?.backdrop_path
             result?.poster_path = BuildConfig.IMAGE_URL + result?.poster_path
         }
     }

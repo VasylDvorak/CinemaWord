@@ -1,7 +1,6 @@
 package com.cinemaworld.views.main_fragment
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -32,7 +31,6 @@ class FilmsAdapter(
                     fillWithViewCard(this, result)
                 }
             }
-
             film.second?.let { result ->
                 secondCard.apply {
                     fillWithViewCard(this, result)
@@ -42,23 +40,20 @@ class FilmsAdapter(
     }
 
     private fun fillWithViewCard(filmCardItemBinding: FilmCardItemBinding, result: Result) {
-        if (!((result.release_date.isNullOrEmpty()) && (result.original_title.isNullOrEmpty()))) {
-            filmCardItemBinding.apply {
-                card.visibility = View.VISIBLE
-                result.poster_path?.let {
-                    loadFilmPhoto(
-                        posterInList, it,
-                        R.drawable.baseline_wallpaper_24
-                    )
-                }
-                result.vote_average?.let {
-                    indicatorRating.progress = (it * 10).roundToInt()
-                    textRating.text = (it * 10).roundToInt().toString() + "%"
-                }
-                titleFilmInList.text = result.original_title
-                releaseFilmInList.text = result.release_date
-                card.setOnClickListener { openInNewWindow(result) }
+        filmCardItemBinding.apply {
+            result.poster_path?.let {
+                loadFilmPhoto(
+                    posterInList, it,
+                    R.drawable.baseline_wallpaper_24
+                )
             }
+            result.vote_average?.let {
+                indicatorRating.progress = (it * 10).roundToInt()
+                textRating.text = (it * 10).roundToInt().toString() + "%"
+            }
+            titleFilmInList.text = result.original_title
+            releaseFilmInList.text = result.release_date
+            card.setOnClickListener { openInNewWindow(result) }
         }
     }
 

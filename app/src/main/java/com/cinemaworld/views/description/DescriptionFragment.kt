@@ -68,6 +68,14 @@ class DescriptionFragment :
                     R.drawable.baseline_wallpaper_24
                 )
             }
+
+            currentResult.backdrop_path?.let {
+                loadFilmPhoto(
+                    bigPoster, it,
+                    R.drawable.baseline_wallpaper_24
+                )
+            }
+
             currentResult.release_date?.let {
                 release.text = getString(R.string.relise) + ": " + it
             }
@@ -98,17 +106,6 @@ class DescriptionFragment :
                     binding.duration.text =
                         getString(R.string.duration) + ": " + data.runtime.toString() + " min"
                     data.overview?.let { binding.overview.text = it }
-
-                    try {
-                        data.images?.posters?.get(0)?.filePath?.let {
-                            loadFilmPhoto(
-                                binding.bigPoster, it,
-                                R.drawable.baseline_wallpaper_24
-                            )
-                        }
-                    } catch (e: IndexOutOfBoundsException) {
-                    }
-
                     updateAdapter(data.credits?.cast)
                 }
             }
