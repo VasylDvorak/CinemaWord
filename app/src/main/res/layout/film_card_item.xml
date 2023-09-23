@@ -30,7 +30,6 @@
             android:layout_marginLeft="5dp"
             android:layout_marginBottom="-25dp"
             android:max="100"
-            android:progress="50"
             app:indicatorColor="@android:color/holo_orange_dark"
             app:indicatorDirectionCircular="clockwise"
             app:layout_constraintBottom_toBottomOf="@id/posterInList"
