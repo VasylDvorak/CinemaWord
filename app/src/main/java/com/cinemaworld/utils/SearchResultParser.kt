@@ -54,8 +54,7 @@ fun dataModelParserAddImageURL(output: DataModel): DataModel {
         }
 
         output.results!!.forEach { result ->
-            if (!result?.backdrop_path.isNullOrEmpty() || !result?.backdrop_path.isNullOrBlank())
-                result?.backdrop_path = BuildConfig.IMAGE_URL + result?.backdrop_path
+            result?.backdrop_path = BuildConfig.IMAGE_URL + result?.backdrop_path
             result?.poster_path = BuildConfig.IMAGE_URL + result?.poster_path
         }
     }
