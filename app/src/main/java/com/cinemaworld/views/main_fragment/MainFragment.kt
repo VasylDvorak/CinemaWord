@@ -190,6 +190,7 @@ class MainFragment : BaseFragment<AppState, FragmentMainBinding>(FragmentMainBin
                                     ?: "",
                                 Toast.LENGTH_LONG
                             ).show()
+                            binding.enterText.visibility=View.GONE
                         } else {
                             showNoInternetConnectionDialog()
                         }

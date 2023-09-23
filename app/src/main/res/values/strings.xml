@@ -32,5 +32,6 @@
     <string name="cast">Актёрский состав</string>
     <string name="search_film">Ищем фильм</string>
     <string name="cant_find_film">Не можем найти фильм</string>
+    <string name="enter_film">Наберите фильм в строке поиска</string>
 
 </resources>
